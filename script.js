@@ -9,8 +9,9 @@ $(document).ready(function() {
     function hourCheck() {
         var currentHour = moment().hours();
 
-        $("time-block").each(function() {
+        $(".time-block").each(function() {
             var hourBlock = parseInt($(this).attr("id").split("-")[1]);
+            console.log(hourBlock)
 
             if(hourBlock < currentHour) {
                 $(this).addClass("past");
@@ -26,6 +27,13 @@ $(document).ready(function() {
             }
         })
     }
+    hourCheck();
+    var interval = setInterval(hourCheck, 15000);
+    $("#hour-9 .description").val(localStorage.getItem("hour-9"));
+    $("#hour-12 .description").val(localStorage.getItem("hour-12"));
+    $("#hour-13 .description").val(localStorage.getItem("hour-13"));
 
-    
-})
+
+
+    $("#currentDay").text(moment().format("dddd, MMMM Do"))
+});
